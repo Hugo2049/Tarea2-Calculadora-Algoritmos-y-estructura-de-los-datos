@@ -16,7 +16,7 @@ public class PostfixCalculator implements PostfixCalculatorADT {
                     case "-":
                         stack.push(operand1 - operand2);
                         break;
-                    case "":
+                    case "*":
                         stack.push(operand1 * operand2);
                         break;
                     case "/":
