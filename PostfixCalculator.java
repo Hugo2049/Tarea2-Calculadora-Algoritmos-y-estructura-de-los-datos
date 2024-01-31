@@ -1,12 +1,25 @@
+/**
+ * Implementación de la interfaz PostfixCalculatorADT que evalúa expresiones en notación postfix.
+ */
 public class PostfixCalculator implements PostfixCalculatorADT {
+
+    /**
+     * Evalúa una expresión en notación postfix y devuelve el resultado.
+     *
+     * @param expression La expresión en notación postfix a evaluar.
+     * @return El resultado de la evaluación de la expresión.
+     */
     @Override
     public int evaluate(String expression) {
+        // Utiliza una pila para realizar el seguimiento de los operandos y operadores.
         Stack<Integer> stack = new VectorStack<>();
 
+        // Divide la expresión en tokens utilizando espacios como delimitadores.
         for (String token : expression.split("\\s")) {
-            if (token.matches("-?\\d+")) { // Es un número
+            if (token.matches("-?\\d+")) { // Verifica si el token es un número entero.
                 stack.push(Integer.parseInt(token));
             } else {
+                // Si el token es un operador, realiza la operación correspondiente con los operandos en la pila.
                 int operand2 = stack.pop();
                 int operand1 = stack.pop();
                 switch (token) {
@@ -26,6 +39,7 @@ public class PostfixCalculator implements PostfixCalculatorADT {
             }
         }
 
+        // El resultado final se encuentra en la cima de la pila y se devuelve.
         return stack.pop();
     }
 }
