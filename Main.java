@@ -2,20 +2,32 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Clase principal que utiliza la implementación de PostfixCalculator para evaluar expresiones en notación postfix
+ * leídas desde un archivo de texto.
+ */
 public class Main {
+    /**
+     * Método principal que realiza la evaluación de expresiones en notación postfix desde un archivo de texto.
+     */
     public static void main(String[] args) {
+        // Crea una instancia de la implementación de PostfixCalculatorADT
         PostfixCalculatorADT calculator = new PostfixCalculator();
-        String filePath = "datos.txt"; // Asegúrate de que la ruta del archivo sea correcta
+
+        // Ruta del archivo que contiene expresiones en notación postfix (asegúrate de que la ruta sea correcta).
+        String filePath = "datos.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
+            // Lee cada línea del archivo y evalúa la expresión en notación postfix.
             while ((line = reader.readLine()) != null) {
                 int result = calculator.evaluate(line);
+                // Imprime el resultado de la evaluación junto con la expresión original.
                 System.out.println("Expresión: " + line + " = " + result);
             }
         } catch (IOException e) {
+            // Manejo de excepciones en caso de error de lectura del archivo.
             e.printStackTrace();
         }
     }
 }
-
